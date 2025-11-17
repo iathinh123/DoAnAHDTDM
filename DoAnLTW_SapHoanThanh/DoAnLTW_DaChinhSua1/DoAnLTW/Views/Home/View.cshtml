@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Thành công";
+    Layout = "~/Views/Shared/LayoutPhuKienDTh.cshtml";
+}
+
+<div class="container text-center mt-5 pt-5" style="min-height: 60vh;">
+    <div class="p-5 bg-white rounded-3 shadow-sm d-inline-block">
+        <h1 class="text-success fw-bold" style="font-size: 4rem;"><i class="bi bi-check-circle"></i></h1>
+        <h2 class="text-success fw-bold mt-3">ĐẶT HÀNG THÀNH CÔNG!</h2>
+        <p class="fs-5 text-muted mt-3">Cảm ơn bạn đã tin tưởng và mua sắm tại cửa hàng.</p>
+        <p>Đơn hàng của bạn đang được xử lý.</p>
+        <a href="@Url.Action("Index", "Home")" class="btn btn-primary px-5 py-2 mt-4 fw-bold">
+            QUAY VỀ TRANG CHỦ
+        </a>
+    </div>
+</div>
+

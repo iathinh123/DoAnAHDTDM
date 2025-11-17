@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+@using DoAnLTW.Models
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid py-3 border-bottom bg-white shadow-sm rounded-3">
+        <div class="row align-items-center bg-danger text-white py-3 shadow-sm">
+            <div class="col-2 text-start">
+                <h3 class="fw-bold m-0">kienthoai</h3>
+            </div>
+            <div class="col-md-4">
+                <form class="d-flex" action="@Url.Action("TimKiem", "Home")" method="get">
+                    <input type="text" name="tuKhoa" class="form-control me-2" placeholder="Tìm sản phẩm..." />
+                    <button type="submit" class="btn btn-outline-light">Tìm</button>
+                </form>
+            </div>
+
+            <div class="col-md-3 text-center">
+                <a href="@Url.Action("Index", "Home")"
+                   class="text-white fw-semibold text-decoration-none me-3">
+                    Trang chủ
+                </a>
+                <a href="@Url.Action("XemGioHang", "Home")"
+                   class="btn btn-danger text-white fw-semibold">
+                    <i class="bi bi-cart-fill me-1"></i> Giỏ hàng
+                </a>
+            </div>
+
+            <div class="col-3 text-end">
+                @{
+                    KhachHang kh = Session["kh"] as KhachHang;
+                    if (kh != null)
+                    {
+                        <a class="text-white fw-semibold text-decoration-none me-3" href="/Home/logout">Đăng xuất</a>
+                        <p>Xin chao @kh.HoTen</p>
+                    }
+                    else
+                    {
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                Tài khoản
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item" href="@Url.Action("DangKy", "Home")">Đăng ký</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("DangNhap", "Home")">Đăng nhập</a></li>
+                            </ul>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="row pt-3">
+            <div class="col-md-3">
+                @Html.Action("DMLoaiSanPham","Home")
+            </div>
+            <div class="col-md-9">
+                @RenderBody()
+            </div>
+        </div>
+
+        <footer class="container mt-5 py-3 border-top text-center text-secondary small">
+            <div class="row">
+                <div class="col-md-3">
+                    <p><b>DỊCH VỤ CHUYÊN NGHIỆP</b></p>
+                </div>
+                <div class="col-md-3">
+                    <p><b>TIẾT KIỆM - NHANH CHÓNG</b></p>
+                </div>
+                <div class="col-md-3">
+                    <p><b>NGON BỔ RẺ</b></p>
+                </div>
+                <div class="col-md-3">
+                    <p><b>KHÁCH HÀNG LÀ THƯỢNG ĐẾ</b></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+

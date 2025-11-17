@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Quản lý Hóa đơn";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">
+        <i class="bi bi-receipt-cutoff me-2"></i> @ViewBag.Title
+    </h2>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-lg-4 mb-3">
+        <div class="card text-white bg-warning shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="me-3">
+                        <div class="text-white-75 small">Đơn hàng "Chưa giao"</div>
+                        <div class="display-6 fw-bold">@ViewBag.SoDonChuaGiao</div>
+                    </div>
+                    <i class="bi bi-clock-history" style="font-size: 3rem; opacity: 0.5;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-4 mb-3">
+        <div class="card text-white bg-info shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="me-3">
+                        <div class="text-white-75 small">Tổng số đơn hàng</div>
+                        <div class="display-6 fw-bold">@ViewBag.TongSoDon</div>
+                    </div>
+                    <i class="bi bi-cart-check-fill" style="font-size: 3rem; opacity: 0.5;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-body text-center">
+                <i class="bi bi-list-ul display-3 text-primary"></i>
+                <h4 class="card-title mt-3">Danh sách Đơn hàng</h4>
+                <p class="card-text">Xem, duyệt và cập nhật trạng thái của tất cả đơn hàng.</p>
+                <a href="@Url.Action("DanhSachDonHang", "Admin")" class="btn btn-primary">
+                    <i class="bi bi-arrow-right-circle me-1"></i> Đi đến
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-body text-center">
+                <i class="bi bi-bar-chart-line-fill display-3 text-success"></i>
+                <h4 class="card-title mt-3">Thống kê Doanh thu</h4>
+                <p class="card-text">Xem biểu đồ và thống kê tổng doanh thu đã đạt được.</p>
+                <a href="@Url.Action("ThongKeDoanhThu", "Admin")" class="btn btn-success">
+                    <i class="bi bi-arrow-right-circle me-1"></i> Đi đến
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

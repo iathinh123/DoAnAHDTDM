@@ -1,0 +1,67 @@
+﻿@model DoAnLTW.Models.HoaDon
+@using DoAnLTW.Models
+@{
+
+    ViewBag.Title = "Cập nhật đơn hàng";
+    // Lấy chi tiết sản phẩm từ ViewBag mà Controller đã gửi qua
+    var chiTiet = ViewBag.ChiTiet as List<ChiTietHoaDon>;
+}
+
+<h2>Cập nhật trạng thái đơn hàng: @Model.MaHD</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <h4>Cập nhật trạng thái</h4>
+        @using (Html.BeginForm("CapNhatDonHang", "Admin", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(model => model.MaHD)
+
+            <div class="form-group">
+                <label>Chọn trạng thái mới</label>
+                <select name="TrangThai" class="form-control">
+                    <option value="Chưa giao" @(Model.TrangThai == "Chưa giao" ? "selected" : "")>Chưa giao</option>
+                    <option value="Đang giao" @(Model.TrangThai == "Đang giao" ? "selected" : "")>Đang giao</option>
+                    <option value="Đã giao" @(Model.TrangThai == "Đã giao" ? "selected" : "")>Đã giao</option>
+                    <option value="Đã hủy" @(Model.TrangThai == "Đã hủy" ? "selected" : "")>Đã hủy</option>
+                </select>
+            </div>
+            <br />
+            <input type="submit" value="Lưu thay đổi" class="btn btn-success" />
+            @Html.ActionLink("Quay lại danh sách", "DanhSachDonHang", null, new { @class = "btn btn-default" })
+        }
+    </div>
+
+    <div class="col-md-8">
+        <h4>Thông tin người nhận</h4>
+        <dl class="dl-horizontal">
+            <dt>Tên khách hàng:</dt>
+            <dd>@Model.KhachHang.HoTen</dd>
+
+            <dt>Địa chỉ giao:</dt>
+            <dd>@Model.DiaChiGiaoHang</dd>
+
+            <dt>Số điện thoại:</dt>
+            <dd>@Model.SoDienThoaiGiaoHang</dd>
+        </dl>
+
+        <h4>Chi tiết sản phẩm</h4>
+        <table class="table">
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+            </tr>
+            @foreach (var item in chiTiet)
+            {
+                <tr>
+                    <td>@item.SanPham.TenSP</td>
+                    <td>@item.SoLuong</td>
+                    <td>@item.DonGia.Value.ToString("N0") VNĐ</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

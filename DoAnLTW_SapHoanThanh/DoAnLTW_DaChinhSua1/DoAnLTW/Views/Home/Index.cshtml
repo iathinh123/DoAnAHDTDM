@@ -1,0 +1,49 @@
+﻿@using DoAnLTW.Models
+@model List<SanPham>
+
+@{
+    ViewBag.Title = "Trang chủ";
+    Layout = "~/Views/Shared/LayoutPhuKienDTh.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        @foreach (SanPham sp in Model)
+        {
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <a href="@Url.Action("ChiTietSanPham", "Home", new { maSP = sp.MaSP })">
+                        <img src="~/Content/HinhAnhPhuKien/@sp.HinhAnh"
+                             class="card-img-top img-fluid p-3"
+                             alt="@sp.TenSP"
+                             style="height: 250px; object-fit: contain;" />
+                    </a>
+
+                    <div class="card-body text-center pt-0">
+                        <h6 class="card-title" style="min-height: 40px;">
+                            <a href="@Url.Action("ChiTietSanPham", "Home", new { maSP = sp.MaSP })" class="text-decoration-none text-dark fw-bold">
+                                @sp.TenSP
+                            </a>
+                        </h6>
+
+                        <p class="card-text text-danger fw-bold fs-5 mb-3">
+                            @string.Format("{0:N0}₫", sp.Gia)
+                        </p>
+
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="@Url.Action("ThemGioHang", "Home", new { maSP = sp.MaSP, url = Request.Url.ToString() })"
+                               class="btn btn-outline-danger btn-sm flex-fill fw-semibold">
+                                <i class="bi bi-cart-plus"></i> Thêm giỏ
+                            </a>
+
+                            <a href="@Url.Action("ThemGioHang", "Home", new { maSP = sp.MaSP, url = Url.Action("XemGioHang", "GioHang") })"
+                               class="btn btn-danger btn-sm flex-fill fw-semibold">
+                                Mua ngay
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

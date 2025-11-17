@@ -1,0 +1,73 @@
+﻿@model IEnumerable<DoAnLTW.Models.HoaDon>
+
+@using DoAnLTW.Models
+
+@{
+
+    ViewBag.Title = "Thống kê Doanh thu";
+
+    // Lấy Tổng doanh thu từ ViewBag
+
+    decimal tongDoanhThu = ViewBag.TongDoanhThu;
+
+}
+
+
+
+<h2>Thống kê Doanh thu</h2>
+
+
+
+<div class="alert alert-success" role="alert">
+
+    <h4 class="alert-heading">Tổng doanh thu</h4>
+
+    <p>Tổng doanh thu từ tất cả các đơn hàng có trạng thái "Đã giao".</p>
+
+    <hr>
+
+    <h3 class="mb-0">@tongDoanhThu.ToString("N0") VNĐ</h3>
+
+</div>
+
+
+
+
+
+<hr />
+
+<h3>Chi tiết các đơn hàng đã giao thành công</h3>
+
+<table class="table">
+
+    <tr class="thead-light">
+
+        <th>Mã HĐ</th>
+
+        <th>Tên Khách hàng</th>
+
+        <th>Ngày lập/giao</th>
+
+        <th>Tổng tiền</th>
+
+    </tr>
+
+    @foreach (var item in Model)
+
+    {
+
+        <tr>
+
+            <td>@item.MaHD</td>
+
+            <td>@item.KhachHang.HoTen</td>
+
+            <td>@item.NgayLap.Value.ToString("dd/MM/yyyy")</td>
+
+            <td>@item.TongTien.Value.ToString("N0") VNĐ</td>
+
+        </tr>
+
+    }
+
+</table>
