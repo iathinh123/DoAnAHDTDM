@@ -1,0 +1,315 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using DoAnLTW.Models;
+using MongoDB.Driver;
+using MongoDB.Bson;
+using System.Configuration;
+namespace DoAnLTW.Controllers
+{
+    public class AdminController : Controller
+    {
+        private readonly IMongoDatabase _database;
+        private readonly IMongoCollection<SanPham> _sanPhamCollection;
+        private readonly IMongoCollection<DanhMuc> _danhMucCollection;
+        private readonly IMongoCollection<NhaCungCap> _nhaCungCapCollection;
+        private readonly IMongoCollection<HoaDon> _hoaDonCollection;
+        private readonly IMongoCollection<KhachHang> _khachHangCollection;
+
+        public AdminController()
+        {
+            // --- CẤU HÌNH KẾT NỐI ---
+            var client = new MongoClient("YOUR_MONGODB_ATLAS_CONNECTION_STRING");
+            _database = client.GetDatabase("QL_PHUKIEN_DIENTHOAI");
+
+            _sanPhamCollection = _database.GetCollection<SanPham>("SanPham");
+            _danhMucCollection = _database.GetCollection<DanhMuc>("DanhMuc");
+            _nhaCungCapCollection = _database.GetCollection<NhaCungCap>("NhaCungCap");
+            _hoaDonCollection = _database.GetCollection<HoaDon>("HoaDon");
+            _khachHangCollection = _database.GetCollection<KhachHang>("KhachHang");
+        }
+
+        public ActionResult Index()
+        {
+            var sanPhams = _sanPhamCollection.Find(_ => true).ToList();
+
+            // Tối ưu: Lấy 1 lần tất cả DanhMucs/NhaCungCaps
+            var danhMucs = _danhMucCollection.Find(_ => true).ToList().ToDictionary(d => d.MaDM);
+            var nhaCungCaps = _nhaCungCapCollection.Find(_ => true).ToList().ToDictionary(n => n.MaNCC);
+
+            // Gán thủ công vào các sản phẩm
+            foreach (var sp in sanPhams)
+            {
+                if (sp.MaDM != null && danhMucs.ContainsKey(sp.MaDM))
+                    sp.DanhMuc = danhMucs[sp.MaDM];
+
+                if (sp.MaNCC != null && nhaCungCaps.ContainsKey(sp.MaNCC))
+                    sp.NhaCungCap = nhaCungCaps[sp.MaNCC];
+            }
+
+            return View(sanPhams);
+        }
+
+        // --- HÀM TẠO MỚI (CREATE) ---
+
+        public ActionResult Create()
+        {
+            ViewBag.MaDM = new SelectList(_danhMucCollection.Find(_ => true).ToList(), "MaDM", "TenDM");
+            ViewBag.MaNCC = new SelectList(_nhaCungCapCollection.Find(_ => true).ToList(), "MaNCC", "TenNCC");
+            return View("Add");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(SanPham sanPham, HttpPostedFileBase HinhAnhUpload)
+        {
+            if (ModelState.IsValid)
+            {
+                // Logic xử lý file giữ nguyên
+                if (HinhAnhUpload != null && HinhAnhUpload.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(HinhAnhUpload.FileName);
+                    string path = Path.Combine(Server.MapPath("~/Content/HinhAnhAdmin"), fileName);
+                    HinhAnhUpload.SaveAs(path);
+                    sanPham.HinhAnh = fileName;
+                }
+
+                // Thay đổi: Dùng InsertOne, không cần SaveChanges
+                _sanPhamCollection.InsertOne(sanPham);
+                return RedirectToAction("Index");
+            }
+            ViewBag.MaDM = new SelectList(_danhMucCollection.Find(_ => true).ToList(), "MaDM", "TenDM", sanPham.MaDM);
+            ViewBag.MaNCC = new SelectList(_nhaCungCapCollection.Find(_ => true).ToList(), "MaNCC", "TenNCC", sanPham.MaNCC);
+            return View("Add", sanPham);
+        }
+        // --- HÀM CHỈNH SỬA (EDIT) ---
+
+        public ActionResult Edit(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            // Thay đổi: Dùng Find().FirstOrDefault()
+            // Lưu ý: Code của bạn đang dùng MaSP làm ID, không phải _id của Mongo
+            SanPham sanPham = _sanPhamCollection.Find(s => s.MaSP.Trim() == id).FirstOrDefault();
+
+            if (sanPham == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Tải SelectList
+            ViewBag.MaDM = new SelectList(_danhMucCollection.Find(_ => true).ToList(), "MaDM", "TenDM", sanPham.MaDM);
+            ViewBag.MaNCC = new SelectList(_nhaCungCapCollection.Find(_ => true).ToList(), "MaNCC", "TenNCC", sanPham.MaNCC);
+            return View("Sua", sanPham);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(SanPham sanPham, HttpPostedFileBase HinhAnhUpload)
+        {
+            if (ModelState.IsValid)
+            {
+                // Lấy thông tin sản phẩm cũ để giữ lại _id và HinhAnh (nếu không upload)
+                var sanPhamCu = _sanPhamCollection.Find(s => s.MaSP == sanPham.MaSP).FirstOrDefault();
+                if (sanPhamCu == null)
+                {
+                    return HttpNotFound();
+                }
+
+                // Giữ lại _id gốc của MongoDB
+                sanPham.Id = sanPhamCu.Id;
+
+                // Xử lý file
+                if (HinhAnhUpload != null && HinhAnhUpload.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(HinhAnhUpload.FileName);
+                    string path = Path.Combine(Server.MapPath("~/Content/HinhAnhAdmin"), fileName);
+                    HinhAnhUpload.SaveAs(path);
+                    sanPham.HinhAnh = fileName;
+                }
+                else
+                {
+                    // Thay đổi: Giữ lại ảnh cũ nếu không upload ảnh mới
+                    sanPham.HinhAnh = sanPhamCu.HinhAnh;
+                }
+
+                // Thay đổi: Dùng ReplaceOne để cập nhật
+                _sanPhamCollection.ReplaceOne(s => s.Id == sanPham.Id, sanPham);
+
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.MaDM = new SelectList(_danhMucCollection.Find(_ => true).ToList(), "MaDM", "TenDM", sanPham.MaDM);
+            ViewBag.MaNCC = new SelectList(_nhaCungCapCollection.Find(_ => true).ToList(), "MaNCC", "TenNCC", sanPham.MaNCC);
+            return View("Sua", sanPham);
+        }
+
+        // --- HÀM XÓA (DELETE) ---
+
+        public ActionResult Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            // Thay đổi: Dùng Find().FirstOrDefault()
+            SanPham sanPham = _sanPhamCollection.Find(s => s.MaSP.Trim() == id).FirstOrDefault();
+
+            if (sanPham == null)
+            {
+                return HttpNotFound();
+            }
+            return View("Xoa", sanPham);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string id)
+        {
+
+            _sanPhamCollection.DeleteOne(s => s.MaSP.Trim() == id);
+
+            return RedirectToAction("Index");
+        }
+
+    public ActionResult DanhSachDonHang()
+        {
+            var dsHoaDon = _hoaDonCollection.Find(_ => true)
+                                       .SortByDescending(h => h.NgayLap)
+                                       .ToList();
+
+            var khachHangs = _khachHangCollection.Find(_ => true).ToList().ToDictionary(k => k.MaKH);
+
+            foreach (var hd in dsHoaDon)
+            {
+                if (hd.MaKH != null && khachHangs.ContainsKey(hd.MaKH))
+                {
+                    hd.KhachHang = khachHangs[hd.MaKH]; // Cần [BsonIgnore] public KhachHang KhachHang
+                }
+            }
+            return View(dsHoaDon);
+        }
+
+        public ActionResult CapNhatDonHang(string maHD)
+        {
+            if (string.IsNullOrEmpty(maHD))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            // Thay đổi: Tìm hóa đơn
+            HoaDon hoaDon = _hoaDonCollection.Find(h => h.MaHD == maHD).FirstOrDefault();
+            if (hoaDon == null)
+            {
+                return HttpNotFound();
+            }
+
+            // --- THAY ĐỔI LỚN: Chi tiết đã được lồng (embedded) ---
+            // Không cần truy vấn ChiTietHoaDons riêng
+            // Nhưng cần "join" thông tin SanPham cho các chi tiết đó
+
+            var maSPList = hoaDon.ChiTietDonHang.Select(ct => ct.MaSP).ToList();
+            var sanPhams = _sanPhamCollection.Find(sp => maSPList.Contains(sp.MaSP))
+                                             .ToList().ToDictionary(sp => sp.MaSP);
+
+            // Gán thông tin sản phẩm vào chi tiết
+            foreach (var ct in hoaDon.ChiTietDonHang)
+            {
+                if (sanPhams.ContainsKey(ct.MaSP))
+                {
+                    ct.SanPham = sanPhams[ct.MaSP]; // Cần [BsonIgnore] public SanPham SanPham
+                }
+            }
+
+            // Giữ nguyên cách dùng ViewBag để View không bị lỗi
+            ViewBag.ChiTiet = hoaDon.ChiTietDonHang;
+
+            return View(hoaDon);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CapNhatDonHang(string maHD, string TrangThai)
+        {
+            if (string.IsNullOrEmpty(maHD))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            // Thay đổi: Dùng UpdateOne cho hiệu quả
+            var filter = Builders<HoaDon>.Filter.Eq(h => h.MaHD, maHD);
+            var update = Builders<HoaDon>.Update.Set(h => h.TrangThai, TrangThai);
+
+            var result = _hoaDonCollection.UpdateOne(filter, update);
+
+            if (result.MatchedCount == 0)
+            {
+                return HttpNotFound();
+            }
+
+            return RedirectToAction("DanhSachDonHang");
+        }
+
+        public ActionResult ThongKeDoanhThu()
+        {
+
+            var filter = Builders<HoaDon>.Filter.Eq(h => h.TrangThai, "Đã giao");
+            var donDaGiao = _hoaDonCollection.Find(filter)
+                                            .SortByDescending(h => h.NgayLap)
+                                            .ToList();
+
+            // Tính tổng bằng LINQ to Objects
+            decimal tongDoanhThu = donDaGiao.Sum(h => h.TongTien);
+            ViewBag.TongDoanhThu = tongDoanhThu;
+
+            // "Join" thông tin KhachHang cho View
+            var khachHangs = _khachHangCollection.Find(_ => true).ToList().ToDictionary(k => k.MaKH);
+            foreach (var hd in donDaGiao)
+            {
+                if (hd.MaKH != null && khachHangs.ContainsKey(hd.MaKH))
+                {
+                    hd.KhachHang = khachHangs[hd.MaKH];
+                }
+            }
+
+            return View(donDaGiao);
+        }
+
+        public ActionResult QuanLyHoaDon()
+        {
+            try
+            {
+                // Thay đổi: Dùng CountDocuments
+                long soDonChuaGiao = _hoaDonCollection.CountDocuments(h => h.TrangThai == "Chưa giao");
+                ViewBag.SoDonChuaGiao = (int)soDonChuaGiao;
+            }
+            catch (Exception)
+            {
+                ViewBag.SoDonChuaGiao = 0;
+            }
+
+            try
+            {
+                // Thay đổi: Dùng CountDocuments
+                long tongSoDon = _hoaDonCollection.CountDocuments(_ => true);
+                ViewBag.TongSoDon = (int)tongSoDon;
+            }
+            catch (Exception)
+            {
+                ViewBag.TongSoDon = 0;
+            }
+
+            return View();
+        }
+    }
+}

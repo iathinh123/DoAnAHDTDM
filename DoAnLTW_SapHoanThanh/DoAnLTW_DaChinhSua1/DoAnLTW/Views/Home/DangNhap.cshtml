@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Shared/LayoutPhuKienDTh.cshtml";
+}
+@using DoAnLTW.Models
+@model KhachHang
+<style>
+    body {
+        background-color: #fff;
+        font-family: Arial, sans-serif;
+    }
+
+    .login-container {
+        max-width: 400px;
+        margin: 100px auto;
+        text-align: center;
+    }
+
+    .login-title {
+        font-size: 28px;
+        font-weight: bold;
+        color: #d40000;
+        margin-bottom: 30px;
+    }
+
+    .btn-login {
+        background-color: #d40000;
+        color: white;
+        font-weight: 600;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .btn-login:hover {
+         background-color: #b30000;
+    }
+</style>
+
+<div class="login-container">
+    <div class="login-title">Đăng nhập SMEMBER</div>
+
+    <form action="/Home/DangNhap" method="post">
+        <div class="mb-3 text-start">
+            <label for="phone" class="form-label">Tên đăng nhập</label>
+            <input type="text" class="form-control" name="txtName" placeholder="Nhập tên đăng nhập">
+        </div>
+        <div class="mb-3 text-start">
+            <label for="password" class="form-label">Mật khẩu</label>
+            <div class="input-group">
+                <input type="password" class="form-control" name="txtPass" placeholder="Nhập mật khẩu của bạn">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-login">Đăng nhập</button>
+    </form>
+
+    <a href="#" class="forgot-link">Quên mật khẩu?</a>
+</div>
+

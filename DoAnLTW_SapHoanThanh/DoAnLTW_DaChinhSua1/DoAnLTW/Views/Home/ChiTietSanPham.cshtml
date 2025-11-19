@@ -1,0 +1,62 @@
+﻿@model DoAnLTW.Models.SanPham
+
+@{
+    ViewBag.Title = "ChiTietSanPham";
+    Layout = "~/Views/Shared/LayoutPhuKienDTh.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary mb-4">Chi tiết sản phẩm</h2>
+
+    <div class="row">
+        <!-- Ảnh sản phẩm bên trái -->
+        <div class="col-md-5 text-center">
+            <img src="@Url.Content("~/Content/HinhAnhPhuKien/" + Model.HinhAnh)"
+                 alt="@Model.TenSP"
+                 class="img-fluid rounded shadow-sm"
+                 style="max-width:350px; height:auto; object-fit:contain;" />
+        </div>
+
+        <!-- Thông tin sản phẩm bên phải -->
+        <div class="col-md-7">
+            <h4 class="mb-3">@Model.TenSP</h4>
+
+            <table class="table table-borderless">
+                <tr>
+                    <th>Giá</th>
+                    <td class="text-end text-danger fw-bold">
+                        @string.Format("{0:N0} ₫", Model.Gia)
+                    </td>
+                </tr>
+                <tr>
+                    <th>Số lượng</th>
+                    <td class="text-end">@Model.SoLuong</td>
+                </tr>
+                <tr>
+                    <th>Mô tả</th>
+                    <td class="text-end">@Model.MoTa</td>
+                </tr>
+                <tr>
+                    <th>Tình trạng</th>
+                    <td class="text-end">@Model.TinhTrang</td>
+                </tr>
+                <tr>
+                    <th>Giảm giá</th>
+                    <td class="text-end">@Model.Gia %</td>
+                </tr>
+              
+            </table>
+
+            <div class="mt-4">
+                <a href="@Url.Action("ThemGioHang", "GioHang", new { maSP = Model.MaSP, url = Url.Action("XemGioHang", "GioHang") })"
+                   class="btn btn-lg btn-danger fw-bold mt-3 shadow-sm">
+                    <i class="bi bi-cart-check-fill"></i> CHỌN MUA NGAY
+                </a>
+                <a href="@Url.Action("MuaNgay", "Home", new { maSP = Model.MaSP })"
+                   class="btn btn-danger">Mua ngay</a>
+
+            </div>
+          
+        </div>
+    </div>
+</div>
