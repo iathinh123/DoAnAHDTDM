@@ -25,7 +25,7 @@ namespace DoAnLTW.Controllers
         public AdminController()
         {
             // --- CẤU HÌNH KẾT NỐI ---
-            var client = new MongoClient("YOUR_MONGODB_ATLAS_CONNECTION_STRING");
+            var client = new MongoClient("mongodb+srv://duc249205_db_user:Tule2409@cluster0.ki8vb7h.mongodb.net/?appName=Cluster0");
             _database = client.GetDatabase("QL_PHUKIEN_DIENTHOAI");
 
             _sanPhamCollection = _database.GetCollection<SanPham>("SanPham");
