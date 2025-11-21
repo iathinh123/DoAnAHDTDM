@@ -1,4 +1,34 @@
+<<<<<<< HEAD
 bin/
 obj/
 .vs/
 packages/
+=======
+# ASP.NET Framework – bắt buộc ignore những cái này
+bin/
+obj/
+packages/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.csproj.user
+*.vspscc
+*.vssscc
+*.cache
+*.log
+*.pdb
+*.exe
+*.dll (trừ trường hợp bạn tự build DLL thì để lại)
+
+# Visual Studio
+.vscode/
+.vs/
+.idea/
+*.swp
+*.swo
+
+# Node nếu có
+node_modules/
+wwwroot/lib/
+>>>>>>> f37319162f63ae1ccdf14949affd1f3c2fa8c7e4

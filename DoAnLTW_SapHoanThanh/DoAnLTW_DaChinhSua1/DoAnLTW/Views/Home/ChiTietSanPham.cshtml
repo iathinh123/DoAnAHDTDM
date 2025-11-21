@@ -48,9 +48,15 @@
             </table>
 
             <div class="mt-4">
+<<<<<<< HEAD
+                <a href="@Url.Action("ThemGioHang", "Home", new { maSP = Model.MaSP, url = Url.Action("XemGioHang", "Home") })"
+                   class="btn btn-lg btn-danger fw-bold mt-3 shadow-sm">
+                    <i class="bi bi-cart-check-fill"></i> ĐẶT HÀNG NGAY
+=======
                 <a href="@Url.Action("ThemGioHang", "GioHang", new { maSP = Model.MaSP, url = Url.Action("XemGioHang", "GioHang") })"
                    class="btn btn-lg btn-danger fw-bold mt-3 shadow-sm">
                     <i class="bi bi-cart-check-fill"></i> CHỌN MUA NGAY
+>>>>>>> f37319162f63ae1ccdf14949affd1f3c2fa8c7e4
                 </a>
                 <a href="@Url.Action("MuaNgay", "Home", new { maSP = Model.MaSP })"
                    class="btn btn-danger">Mua ngay</a>

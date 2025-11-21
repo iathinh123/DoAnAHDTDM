@@ -20,7 +20,11 @@
                     <div class="card-body text-center">
                         <h6 class="card-title text-primary">@sp.TenSP</h6>
                         <p class="card-text text-danger fw-bold">@string.Format("{0:N0} ₫", sp.Gia)</p>
+<<<<<<< HEAD
+                        <a href="@Url.Action("ChiTietSanPham", "Home", new { maSP = sp.MaSP })"
+=======
                         <a href="@Url.Action("ChiTietSanPham", "Home", new { id = sp.MaSP })"
+>>>>>>> f37319162f63ae1ccdf14949affd1f3c2fa8c7e4
                            class="btn btn-outline-primary btn-sm">Xem chi tiết</a>
                     </div>
                 </div>

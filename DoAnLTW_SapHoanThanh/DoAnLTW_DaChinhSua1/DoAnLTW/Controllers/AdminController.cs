@@ -24,26 +24,22 @@ namespace DoAnLTW.Controllers
 
         public AdminController()
         {
-            // --- CẤU HÌNH KẾT NỐI ---
-            var client = new MongoClient("mongodb+srv://duc249205_db_user:Tule2409@cluster0.ki8vb7h.mongodb.net/?appName=Cluster0");
-            _database = client.GetDatabase("QL_PHUKIEN_DIENTHOAI");
-
+            string connectionString = ConfigurationManager.AppSettings["MongoConnection"];
+            string dbName = ConfigurationManager.AppSettings["Test_KetNoi"];
+            var client = new MongoClient(connectionString);
+            _database = client.GetDatabase(dbName);
             _sanPhamCollection = _database.GetCollection<SanPham>("SanPham");
             _danhMucCollection = _database.GetCollection<DanhMuc>("DanhMuc");
+            _khachHangCollection = _database.GetCollection<KhachHang>("KhachHang");
             _nhaCungCapCollection = _database.GetCollection<NhaCungCap>("NhaCungCap");
             _hoaDonCollection = _database.GetCollection<HoaDon>("HoaDon");
-            _khachHangCollection = _database.GetCollection<KhachHang>("KhachHang");
         }
 
         public ActionResult Index()
         {
             var sanPhams = _sanPhamCollection.Find(_ => true).ToList();
-
-            // Tối ưu: Lấy 1 lần tất cả DanhMucs/NhaCungCaps
             var danhMucs = _danhMucCollection.Find(_ => true).ToList().ToDictionary(d => d.MaDM);
             var nhaCungCaps = _nhaCungCapCollection.Find(_ => true).ToList().ToDictionary(n => n.MaNCC);
-
-            // Gán thủ công vào các sản phẩm
             foreach (var sp in sanPhams)
             {
                 if (sp.MaDM != null && danhMucs.ContainsKey(sp.MaDM))
@@ -71,7 +67,6 @@ namespace DoAnLTW.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Logic xử lý file giữ nguyên
                 if (HinhAnhUpload != null && HinhAnhUpload.ContentLength > 0)
                 {
                     string fileName = Path.GetFileName(HinhAnhUpload.FileName);
@@ -79,8 +74,6 @@ namespace DoAnLTW.Controllers
                     HinhAnhUpload.SaveAs(path);
                     sanPham.HinhAnh = fileName;
                 }
-
-                // Thay đổi: Dùng InsertOne, không cần SaveChanges
                 _sanPhamCollection.InsertOne(sanPham);
                 return RedirectToAction("Index");
             }
@@ -96,17 +89,12 @@ namespace DoAnLTW.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            // Thay đổi: Dùng Find().FirstOrDefault()
-            // Lưu ý: Code của bạn đang dùng MaSP làm ID, không phải _id của Mongo
             SanPham sanPham = _sanPhamCollection.Find(s => s.MaSP.Trim() == id).FirstOrDefault();
 
             if (sanPham == null)
             {
                 return HttpNotFound();
             }
-
-            // Tải SelectList
             ViewBag.MaDM = new SelectList(_danhMucCollection.Find(_ => true).ToList(), "MaDM", "TenDM", sanPham.MaDM);
             ViewBag.MaNCC = new SelectList(_nhaCungCapCollection.Find(_ => true).ToList(), "MaNCC", "TenNCC", sanPham.MaNCC);
             return View("Sua", sanPham);
@@ -118,8 +106,6 @@ namespace DoAnLTW.Controllers
         {
             if (ModelState.IsValid)
             {
-                // --- SỬA LỖI TẠI ĐÂY ---
-                // Thêm .Trim() vào cả 2 vế để đảm bảo tìm chính xác như hàm GET
                 var sanPhamCu = _sanPhamCollection.Find(s => s.MaSP.Trim() == sanPham.MaSP.Trim()).FirstOrDefault();
 
                 if (sanPhamCu == null)
@@ -164,8 +150,6 @@ namespace DoAnLTW.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            // Thay đổi: Dùng Find().FirstOrDefault()
             SanPham sanPham = _sanPhamCollection.Find(s => s.MaSP.Trim() == id).FirstOrDefault();
 
             if (sanPham == null)
@@ -197,44 +181,36 @@ namespace DoAnLTW.Controllers
             {
                 if (hd.MaKH != null && khachHangs.ContainsKey(hd.MaKH))
                 {
-                    hd.KhachHang = khachHangs[hd.MaKH]; // Cần [BsonIgnore] public KhachHang KhachHang
+                    hd.KhachHang = khachHangs[hd.MaKH];
                 }
             }
             return View(dsHoaDon);
         }
 
-        public ActionResult CapNhatDonHang(string maHD)
+        public ActionResult CapNhatDonHang(string MaHD)
         {
-            if (string.IsNullOrEmpty(maHD))
+            if (string.IsNullOrEmpty(MaHD))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             // Thay đổi: Tìm hóa đơn
-            HoaDon hoaDon = _hoaDonCollection.Find(h => h.MaHD == maHD).FirstOrDefault();
+            HoaDon hoaDon = _hoaDonCollection.Find(h => h.MaHD == MaHD).FirstOrDefault();
+
             if (hoaDon == null)
             {
                 return HttpNotFound();
             }
-
-            // --- THAY ĐỔI LỚN: Chi tiết đã được lồng (embedded) ---
-            // Không cần truy vấn ChiTietHoaDons riêng
-            // Nhưng cần "join" thông tin SanPham cho các chi tiết đó
-
             var maSPList = hoaDon.ChiTietDonHang.Select(ct => ct.MaSP).ToList();
             var sanPhams = _sanPhamCollection.Find(sp => maSPList.Contains(sp.MaSP))
                                              .ToList().ToDictionary(sp => sp.MaSP);
-
-            // Gán thông tin sản phẩm vào chi tiết
             foreach (var ct in hoaDon.ChiTietDonHang)
             {
                 if (sanPhams.ContainsKey(ct.MaSP))
                 {
-                    ct.SanPham = sanPhams[ct.MaSP]; // Cần [BsonIgnore] public SanPham SanPham
+                    ct.SanPham = sanPhams[ct.MaSP];
                 }
             }
-
-            // Giữ nguyên cách dùng ViewBag để View không bị lỗi
             ViewBag.ChiTiet = hoaDon.ChiTietDonHang;
 
             return View(hoaDon);
@@ -242,15 +218,13 @@ namespace DoAnLTW.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CapNhatDonHang(string maHD, string TrangThai)
+        public ActionResult CapNhatDonHang(string MaHD, string TrangThai)
         {
-            if (string.IsNullOrEmpty(maHD))
+            if (string.IsNullOrEmpty(MaHD))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            // Thay đổi: Dùng UpdateOne cho hiệu quả
-            var filter = Builders<HoaDon>.Filter.Eq(h => h.MaHD, maHD);
+            var filter = Builders<HoaDon>.Filter.Eq(h => h.MaHD, MaHD);
             var update = Builders<HoaDon>.Update.Set(h => h.TrangThai, TrangThai);
 
             var result = _hoaDonCollection.UpdateOne(filter, update);
@@ -270,12 +244,8 @@ namespace DoAnLTW.Controllers
             var donDaGiao = _hoaDonCollection.Find(filter)
                                             .SortByDescending(h => h.NgayLap)
                                             .ToList();
-
-            // Tính tổng bằng LINQ to Objects
             decimal tongDoanhThu = donDaGiao.Sum(h => h.TongTien);
             ViewBag.TongDoanhThu = tongDoanhThu;
-
-            // "Join" thông tin KhachHang cho View
             var khachHangs = _khachHangCollection.Find(_ => true).ToList().ToDictionary(k => k.MaKH);
             foreach (var hd in donDaGiao)
             {
@@ -292,7 +262,6 @@ namespace DoAnLTW.Controllers
         {
             try
             {
-                // Thay đổi: Dùng CountDocuments
                 long soDonChuaGiao = _hoaDonCollection.CountDocuments(h => h.TrangThai == "Chưa giao");
                 ViewBag.SoDonChuaGiao = (int)soDonChuaGiao;
             }
@@ -303,7 +272,6 @@ namespace DoAnLTW.Controllers
 
             try
             {
-                // Thay đổi: Dùng CountDocuments
                 long tongSoDon = _hoaDonCollection.CountDocuments(_ => true);
                 ViewBag.TongSoDon = (int)tongSoDon;
             }

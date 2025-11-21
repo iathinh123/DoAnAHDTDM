@@ -66,7 +66,7 @@
                 @Html.DisplayFor(modelItem => item.NhanVien.HoTen)
             </td>
             <td>
-                @Html.ActionLink("Cập nhật", "CapNhatDonHang", new { maHD = item.MaHD }, new { @class = "btn btn-info" })
+                @Html.ActionLink("Cập nhật", "CapNhatDonHang","Admin", new { MaHD = item.MaHD }, new { @class = "btn btn-info" })
             </td>
         </tr>
     }
