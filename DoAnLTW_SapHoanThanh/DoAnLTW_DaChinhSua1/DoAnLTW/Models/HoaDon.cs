@@ -6,6 +6,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 namespace DoAnLTW.Models
 {
+<<<<<<< HEAD
     [BsonIgnoreExtraElements]
     public class HoaDon
     {
@@ -13,6 +14,13 @@ namespace DoAnLTW.Models
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         public string Id { get; set; }
         [BsonElement("maHD")]
+=======
+    public class HoaDon
+    {
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
+>>>>>>> f37319162f63ae1ccdf14949affd1f3c2fa8c7e4
         public string MaHD { get; set; }
         public string MaKH { get; set; }
 
@@ -24,7 +32,11 @@ namespace DoAnLTW.Models
         public string DiaChiGiaoHang { get; set; }
         public string SoDienThoaiGiaoHang { get; set; }
         public decimal TongTien { get; set; }
+<<<<<<< HEAD
         public NhanVien NhanVien { get; set; }
+=======
+
+>>>>>>> f37319162f63ae1ccdf14949affd1f3c2fa8c7e4
         [BsonIgnore]
         public KhachHang KhachHang { get; set; }
 

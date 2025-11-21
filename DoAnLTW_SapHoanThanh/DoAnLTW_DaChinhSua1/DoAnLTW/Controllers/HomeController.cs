@@ -124,6 +124,7 @@ namespace DoAnLTW.Controllers
         //    return View();
         //}
 
+
         //----------------------Giỏ hàng-------------------------------
         //-------------------------------------------------------------
         public List<CartItem> LayGioHang()

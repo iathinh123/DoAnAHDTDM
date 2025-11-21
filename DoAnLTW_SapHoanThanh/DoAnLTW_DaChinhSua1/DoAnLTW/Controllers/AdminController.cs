@@ -40,7 +40,6 @@ namespace DoAnLTW.Controllers
             var sanPhams = _sanPhamCollection.Find(_ => true).ToList();
             var danhMucs = _danhMucCollection.Find(_ => true).ToList().ToDictionary(d => d.MaDM);
             var nhaCungCaps = _nhaCungCapCollection.Find(_ => true).ToList().ToDictionary(n => n.MaNCC);
-
             foreach (var sp in sanPhams)
             {
                 if (sp.MaDM != null && danhMucs.ContainsKey(sp.MaDM))
@@ -75,7 +74,6 @@ namespace DoAnLTW.Controllers
                     HinhAnhUpload.SaveAs(path);
                     sanPham.HinhAnh = fileName;
                 }
-
                 _sanPhamCollection.InsertOne(sanPham);
                 return RedirectToAction("Index");
             }
@@ -91,14 +89,12 @@ namespace DoAnLTW.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
             SanPham sanPham = _sanPhamCollection.Find(s => s.MaSP.Trim() == id).FirstOrDefault();
 
             if (sanPham == null)
             {
                 return HttpNotFound();
             }
-
             ViewBag.MaDM = new SelectList(_danhMucCollection.Find(_ => true).ToList(), "MaDM", "TenDM", sanPham.MaDM);
             ViewBag.MaNCC = new SelectList(_nhaCungCapCollection.Find(_ => true).ToList(), "MaNCC", "TenNCC", sanPham.MaNCC);
             return View("Sua", sanPham);
@@ -116,7 +112,6 @@ namespace DoAnLTW.Controllers
                     return HttpNotFound();
                 }
                 sanPham.Id = sanPhamCu.Id;
-
                 if (HinhAnhUpload != null && HinhAnhUpload.ContentLength > 0)
                 {
                     string fileName = Path.GetFileName(HinhAnhUpload.FileName);
@@ -146,7 +141,6 @@ namespace DoAnLTW.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
             SanPham sanPham = _sanPhamCollection.Find(s => s.MaSP.Trim() == id).FirstOrDefault();
 
             if (sanPham == null)
@@ -193,15 +187,14 @@ namespace DoAnLTW.Controllers
 
             // Thay đổi: Tìm hóa đơn
             HoaDon hoaDon = _hoaDonCollection.Find(h => h.MaHD == MaHD).FirstOrDefault();
+
             if (hoaDon == null)
             {
                 return HttpNotFound();
             }
-
             var maSPList = hoaDon.ChiTietDonHang.Select(ct => ct.MaSP).ToList();
             var sanPhams = _sanPhamCollection.Find(sp => maSPList.Contains(sp.MaSP))
                                              .ToList().ToDictionary(sp => sp.MaSP);
-
             foreach (var ct in hoaDon.ChiTietDonHang)
             {
                 if (sanPhams.ContainsKey(ct.MaSP))
@@ -242,7 +235,6 @@ namespace DoAnLTW.Controllers
             var donDaGiao = _hoaDonCollection.Find(filter)
                                             .SortByDescending(h => h.NgayLap)
                                             .ToList();
-
             decimal tongDoanhThu = donDaGiao.Sum(h => h.TongTien);
             ViewBag.TongDoanhThu = tongDoanhThu;
             var khachHangs = _khachHangCollection.Find(_ => true).ToList().ToDictionary(k => k.MaKH);
