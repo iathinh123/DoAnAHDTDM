@@ -21,11 +21,8 @@ namespace DoAnLTW
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-<<<<<<< HEAD
                 defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional }
-=======
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
->>>>>>> f37319162f63ae1ccdf14949affd1f3c2fa8c7e4
+
             );
         }
     }
