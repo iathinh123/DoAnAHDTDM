@@ -22,7 +22,7 @@
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_DbContextTypeFullName>DoAnLTW.Models.QL_PHUKIEN_DIENTHOAIEntities</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_DbContextDialogWidth>600</WebStackScaffolding_DbContextDialogWidth>
-    <NameOfLastUsedPublishProfile>D:\Cac_Mon_Hoc\300_bai_code_thieu_nhi\Do_An_Tren_Lop\AoHoa\DoAnLTW_SapHoanThanh\DoAnLTW_DaChinhSua1\DoAnLTW\Properties\PublishProfiles\FolderProfile.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>D:\Cac_Mon_Hoc\300_bai_code_thieu_nhi\Do_An_Tren_Lop\AoHoa\DoAnLTW_SapHoanThanh\DoAnLTW_DaChinhSua1\DoAnLTW\Properties\PublishProfiles\registry.hub.docker.com_Duckmanz.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

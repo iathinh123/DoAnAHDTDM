@@ -118,31 +118,34 @@ namespace DoAnLTW.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Lấy thông tin sản phẩm cũ để giữ lại _id và HinhAnh (nếu không upload)
-                var sanPhamCu = _sanPhamCollection.Find(s => s.MaSP == sanPham.MaSP).FirstOrDefault();
+                // --- SỬA LỖI TẠI ĐÂY ---
+                // Thêm .Trim() vào cả 2 vế để đảm bảo tìm chính xác như hàm GET
+                var sanPhamCu = _sanPhamCollection.Find(s => s.MaSP.Trim() == sanPham.MaSP.Trim()).FirstOrDefault();
+
                 if (sanPhamCu == null)
                 {
                     return HttpNotFound();
                 }
 
-                // Giữ lại _id gốc của MongoDB
+                // Giữ lại _id gốc của MongoDB (Quan trọng để Update đúng dòng)
                 sanPham.Id = sanPhamCu.Id;
 
-                // Xử lý file
+                // Xử lý file ảnh
                 if (HinhAnhUpload != null && HinhAnhUpload.ContentLength > 0)
                 {
                     string fileName = Path.GetFileName(HinhAnhUpload.FileName);
+                    // Đảm bảo đường dẫn lưu đúng vào thư mục Content
                     string path = Path.Combine(Server.MapPath("~/Content/HinhAnhAdmin"), fileName);
                     HinhAnhUpload.SaveAs(path);
                     sanPham.HinhAnh = fileName;
                 }
                 else
                 {
-                    // Thay đổi: Giữ lại ảnh cũ nếu không upload ảnh mới
+                    // Giữ lại ảnh cũ nếu không upload ảnh mới
                     sanPham.HinhAnh = sanPhamCu.HinhAnh;
                 }
 
-                // Thay đổi: Dùng ReplaceOne để cập nhật
+                // Cập nhật
                 _sanPhamCollection.ReplaceOne(s => s.Id == sanPham.Id, sanPham);
 
                 return RedirectToAction("Index");
