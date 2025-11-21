@@ -117,7 +117,12 @@ namespace DoAnLTW.Controllers
 
             return View(sanPham);
         }
-
+        //public ActionResult DangXuat()
+        //{
+            
+            
+        //    return View();
+        //}
 
         //----------------------Giỏ hàng-------------------------------
         //-------------------------------------------------------------
