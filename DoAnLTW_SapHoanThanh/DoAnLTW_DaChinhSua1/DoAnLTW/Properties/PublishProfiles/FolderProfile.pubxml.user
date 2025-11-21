@@ -1,0 +1,640 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\Cac_Mon_Hoc\300_bai_code_thieu_nhi</_PublishTargetUrl>
+    <History>True|2025-11-20T05:55:54.7821443Z||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>09/10/2013 23:29:20</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.pdb">
+      <publishTime>09/10/2013 23:29:20</publishTime>
+    </File>
+    <File Include="bin/BCrypt.Net-Next.dll">
+      <publishTime>03/03/2022 23:10:20</publishTime>
+    </File>
+    <File Include="bin/DnsClient.dll">
+      <publishTime>06/11/2022 03:37:26</publishTime>
+    </File>
+    <File Include="bin/DoAnLTW.dll">
+      <publishTime>11/20/2025 12:55:51</publishTime>
+    </File>
+    <File Include="bin/DoAnLTW.pdb">
+      <publishTime>11/20/2025 12:55:51</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>06/17/2024 03:46:24</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>06/17/2024 03:47:02</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Bcl.AsyncInterfaces.dll">
+      <publishTime>10/20/2020 01:40:36</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>09/05/2018 23:10:50</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Extensions.Logging.Abstractions.dll">
+      <publishTime>07/25/2017 07:48:04</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>04/12/2022 02:09:46</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Win32.Registry.dll">
+      <publishTime>10/20/2020 01:37:20</publishTime>
+    </File>
+    <File Include="bin/MongoDB.Bson.dll">
+      <publishTime>09/11/2025 01:03:52</publishTime>
+    </File>
+    <File Include="bin/MongoDB.Driver.dll">
+      <publishTime>09/11/2025 01:04:18</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>03/08/2023 14:09:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>08/08/2018 12:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe.config">
+      <publishTime>08/08/2018 19:18:12</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.rsp">
+      <publishTime>08/08/2018 19:09:42</publishTime>
+    </File>
+    <File Include="bin/roslyn/csi.exe">
+      <publishTime>08/08/2018 12:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/csi.exe.config">
+      <publishTime>08/08/2018 19:18:34</publishTime>
+    </File>
+    <File Include="bin/roslyn/csi.rsp">
+      <publishTime>08/08/2018 19:09:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>08/08/2018 12:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>08/08/2018 12:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.Scripting.dll">
+      <publishTime>08/08/2018 12:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>08/08/2018 12:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.Scripting.dll">
+      <publishTime>08/08/2018 12:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>08/08/2018 12:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>08/08/2018 19:09:42</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.amd64.dll">
+      <publishTime>12/05/2017 16:36:44</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.x86.dll">
+      <publishTime>12/05/2017 16:36:44</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Managed.Core.targets">
+      <publishTime>08/08/2018 19:09:42</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>08/08/2018 19:09:42</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Win32.Primitives.dll">
+      <publishTime>11/06/2016 01:55:32</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.AppContext.dll">
+      <publishTime>11/06/2016 01:55:34</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>05/16/2018 10:29:34</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Console.dll">
+      <publishTime>11/06/2016 01:55:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Diagnostics.DiagnosticSource.dll">
+      <publishTime>11/06/2016 01:55:52</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Diagnostics.FileVersionInfo.dll">
+      <publishTime>11/06/2016 01:55:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Diagnostics.StackTrace.dll">
+      <publishTime>11/06/2016 01:55:52</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Globalization.Calendars.dll">
+      <publishTime>11/06/2016 01:56:02</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.Compression.dll">
+      <publishTime>11/06/2016 01:56:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.Compression.ZipFile.dll">
+      <publishTime>11/06/2016 01:56:04</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.FileSystem.dll">
+      <publishTime>11/06/2016 01:56:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.FileSystem.Primitives.dll">
+      <publishTime>11/06/2016 01:56:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Net.Http.dll">
+      <publishTime>11/06/2016 01:56:30</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Net.Sockets.dll">
+      <publishTime>11/06/2016 01:56:34</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>05/16/2018 10:29:44</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Runtime.InteropServices.RuntimeInformation.dll">
+      <publishTime>11/06/2016 01:57:00</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Security.Cryptography.Algorithms.dll">
+      <publishTime>11/06/2016 01:57:14</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Security.Cryptography.Encoding.dll">
+      <publishTime>11/06/2016 01:57:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Security.Cryptography.Primitives.dll">
+      <publishTime>11/06/2016 01:57:18</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Security.Cryptography.X509Certificates.dll">
+      <publishTime>11/06/2016 01:57:18</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Text.Encoding.CodePages.dll">
+      <publishTime>11/06/2016 01:57:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Threading.Tasks.Extensions.dll">
+      <publishTime>11/06/2016 01:57:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.ValueTuple.dll">
+      <publishTime>11/06/2016 01:57:30</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Xml.ReaderWriter.dll">
+      <publishTime>11/06/2016 01:57:36</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Xml.XmlDocument.dll">
+      <publishTime>11/06/2016 01:57:34</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Xml.XPath.dll">
+      <publishTime>11/06/2016 01:57:40</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Xml.XPath.XDocument.dll">
+      <publishTime>11/06/2016 01:57:34</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>08/08/2018 12:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe.config">
+      <publishTime>08/08/2018 19:18:18</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.rsp">
+      <publishTime>08/08/2018 19:09:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>08/08/2018 12:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>08/08/2018 19:18:16</publishTime>
+    </File>
+    <File Include="bin/SharpCompress.dll">
+      <publishTime>11/22/2021 16:21:26</publishTime>
+    </File>
+    <File Include="bin/Snappier.dll">
+      <publishTime>01/24/2021 00:43:30</publishTime>
+    </File>
+    <File Include="bin/System.Buffers.dll">
+      <publishTime>02/19/2020 17:05:18</publishTime>
+    </File>
+    <File Include="bin/System.Memory.dll">
+      <publishTime>05/08/2022 10:31:02</publishTime>
+    </File>
+    <File Include="bin/System.Numerics.Vectors.dll">
+      <publishTime>05/15/2018 20:29:44</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.CompilerServices.Unsafe.dll">
+      <publishTime>10/20/2020 01:46:30</publishTime>
+    </File>
+    <File Include="bin/System.Security.AccessControl.dll">
+      <publishTime>10/20/2020 01:44:38</publishTime>
+    </File>
+    <File Include="bin/System.Security.Principal.Windows.dll">
+      <publishTime>10/20/2020 01:46:28</publishTime>
+    </File>
+    <File Include="bin/System.Text.Encoding.CodePages.dll">
+      <publishTime>10/20/2020 01:46:44</publishTime>
+    </File>
+    <File Include="bin/System.Threading.Tasks.Extensions.dll">
+      <publishTime>02/19/2020 17:05:18</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>05/28/2022 06:41:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>05/28/2022 06:42:20</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>02/11/2014 22:26:04</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>05/28/2022 06:42:06</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>05/28/2022 06:42:46</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>05/28/2022 06:42:16</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>05/28/2022 06:42:50</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>01/23/2014 20:57:34</publishTime>
+    </File>
+    <File Include="bin/ZstdSharp.dll">
+      <publishTime>10/18/2023 23:06:04</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.css">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.css.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.min.css">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.min.css.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.rtl.css">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.rtl.css.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.rtl.min.css">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.rtl.min.css.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.css">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.css.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.min.css">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.min.css.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.rtl.css">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.rtl.css.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.rtl.min.css">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.rtl.min.css.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.css">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.css.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.min.css">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.min.css.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.rtl.css">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.rtl.css.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.rtl.min.css">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.rtl.min.css.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap.rtl.css">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap.rtl.css.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap.rtl.min.css">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/bootstrap.rtl.min.css.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhAdmin/AirPods3.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhAdmin/Bàn phím Bluetooth Newmen BK66 Foldable.png">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhAdmin/Bàn phím cơ AKKO 3068B Pincess Switch.png">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhAdmin/Bàn phím cơ có dây Newmen GM328.png">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhAdmin/CapSacBaseusType-C2m.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhAdmin/CapSacRemaxLightningRC-094i.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhAdmin/Chuột Gaming có dây LOGITECH G102 LightSync.png">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhAdmin/Chuột không dây LOGITECH SIGNATURE M650.png">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhAdmin/Chuột không dây Ugreen Silent MU006.png">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhAdmin/CuongLuciPhone14ProMaxNillkin.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhAdmin/CuongLucKingKong.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhAdmin/InnostylePowerGo10000mAh.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhAdmin/OpLungDaGalaxyZFlip5.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhAdmin/OpLungiPhone14TrongSuot.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhAdmin/OpLungMagsafeiPhone15.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhAdmin/OpLungSamSungS23.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhAdmin/Pisen Quick Powerlink.png">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhAdmin/SacDuPhongRomoss20000mAhSense8.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhAdmin/SamSungBuds2Pro.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhAdmin/TaiNgheBluetoothBaseus.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhAdmin/TaiNgheTrueWirelessXiaomiBuds.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhPhuKien/AirPods3.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhPhuKien/Bàn phím Bluetooth Newmen BK66 Foldable.png">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhPhuKien/Bàn phím cơ AKKO 3068B Pincess Switch.png">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhPhuKien/Bàn phím cơ có dây Newmen GM328.png">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhPhuKien/CapSacBaseusType-C2m.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhPhuKien/CapSacRemaxLightningRC-094i.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhPhuKien/Chuột Gaming có dây LOGITECH G102 LightSync.png">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhPhuKien/Chuột không dây LOGITECH SIGNATURE M650.png">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhPhuKien/Chuột không dây Ugreen Silent MU006.png">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhPhuKien/CuongLuciPhone14ProMaxNillkin.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhPhuKien/CuongLucKingKong.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhPhuKien/InnostylePowerGo10000mAh.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhPhuKien/OpLungDaGalaxyZFlip5.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhPhuKien/OpLungiPhone14TrongSuot.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhPhuKien/OpLungMagsafeiPhone15.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhPhuKien/OpLungSamSungS23.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhPhuKien/Pisen Quick Powerlink.png">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhPhuKien/SacDuPhongRomoss20000mAhSense8.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhPhuKien/SamSungBuds2Pro.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhPhuKien/TaiNgheBluetoothBaseus.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/HinhAnhPhuKien/TaiNgheTrueWirelessXiaomiBuds.jpg">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.bundle.js">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.bundle.js.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.bundle.min.js">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.bundle.min.js.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.esm.js">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.esm.js.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.esm.min.js">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.esm.min.js.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.7.0.js">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.7.0.min.js">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.7.0.min.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.7.0.slim.js">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.7.0.slim.min.js">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.7.0.slim.min.map">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.8.3.js">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/Admin/Add.cshtml">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/Admin/CapNhatDonHang.cshtml">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/Admin/DanhSachDonHang.cshtml">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/Admin/Index.cshtml">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/Admin/QuanLyHoaDon.cshtml">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/Admin/Sua.cshtml">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/Admin/ThongKeDoanhThu.cshtml">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/Admin/Xoa.cshtml">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/Home/ChiTietSanPham.cshtml">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/Home/DangKy.cshtml">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/Home/DangNhap.cshtml">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/Home/DatHang.cshtml">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/Home/DMLoaiSanPham.cshtml">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/Home/ThanhToanMuaNgay.cshtml">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/Home/TimKiem.cshtml">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/Home/View.cshtml">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/Home/XacNhanDonHang.cshtml">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/Home/XemGioHang.cshtml">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/Shared/LayoutPhuKienDTh.cshtml">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/Shared/_LayoutAdmin.cshtml">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>11/17/2025 13:46:01</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>11/20/2025 12:55:52</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

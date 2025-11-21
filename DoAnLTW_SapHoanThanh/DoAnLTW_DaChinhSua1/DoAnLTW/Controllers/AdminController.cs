@@ -106,23 +106,32 @@ namespace DoAnLTW.Controllers
         {
             if (ModelState.IsValid)
             {
-                var sanPhamCu = _sanPhamCollection.Find(s => s.MaSP == sanPham.MaSP).FirstOrDefault();
+                var sanPhamCu = _sanPhamCollection.Find(s => s.MaSP.Trim() == sanPham.MaSP.Trim()).FirstOrDefault();
+
                 if (sanPhamCu == null)
                 {
                     return HttpNotFound();
                 }
+
+                // Giữ lại _id gốc của MongoDB (Quan trọng để Update đúng dòng)
                 sanPham.Id = sanPhamCu.Id;
+
+                // Xử lý file ảnh
                 if (HinhAnhUpload != null && HinhAnhUpload.ContentLength > 0)
                 {
                     string fileName = Path.GetFileName(HinhAnhUpload.FileName);
+                    // Đảm bảo đường dẫn lưu đúng vào thư mục Content
                     string path = Path.Combine(Server.MapPath("~/Content/HinhAnhAdmin"), fileName);
                     HinhAnhUpload.SaveAs(path);
                     sanPham.HinhAnh = fileName;
                 }
                 else
                 {
+                    // Giữ lại ảnh cũ nếu không upload ảnh mới
                     sanPham.HinhAnh = sanPhamCu.HinhAnh;
                 }
+
+                // Cập nhật
                 _sanPhamCollection.ReplaceOne(s => s.Id == sanPham.Id, sanPham);
 
                 return RedirectToAction("Index");
