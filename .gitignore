@@ -1,9 +1,4 @@
 <<<<<<< HEAD
-bin/
-obj/
-.vs/
-packages/
-=======
 # ASP.NET Framework – bắt buộc ignore những cái này
 bin/
 obj/
@@ -31,4 +26,9 @@ packages/
 # Node nếu có
 node_modules/
 wwwroot/lib/
->>>>>>> f37319162f63ae1ccdf14949affd1f3c2fa8c7e4
+=======
+bin/
+obj/
+.vs/
+packages/
+>>>>>>> 454b07a (First commit Do An)

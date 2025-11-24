@@ -22,7 +22,6 @@ namespace DoAnLTW
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional }
-
             );
         }
     }
