@@ -32,9 +32,6 @@
         <th>
             @Html.DisplayNameFor(model => model.KhachHang.HoTen)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NhanVien.HoTen)
-        </th>
         <th></th>
     </tr>
 
@@ -63,10 +60,7 @@
                 @Html.DisplayFor(modelItem => item.KhachHang.HoTen)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NhanVien.HoTen)
-            </td>
-            <td>
-                @Html.ActionLink("Cập nhật", "CapNhatDonHang","Admin", new { MaHD = item.MaHD }, new { @class = "btn btn-info" })
+                @Html.ActionLink("Cập nhật", "CapNhatDonHang", new { maHD = item.MaHD }, new { @class = "btn btn-info" })
             </td>
         </tr>
     }
