@@ -32,13 +32,13 @@
         padding: 10px;
     }
 
-    .btn-login:hover {
-         background-color: #b30000;
-    }
+        .btn-login:hover {
+            background-color: #b30000;
+        }
 </style>
 
 <div class="login-container">
-    <div class="login-title">Đăng nhập SMEMBER</div>
+    <div class="login-title">Đăng nhập</div>
 
     <form action="/Home/DangNhap" method="post">
         <div class="mb-3 text-start">
@@ -54,6 +54,19 @@
         <button type="submit" class="btn btn-login">Đăng nhập</button>
     </form>
 
-    <a href="#" class="forgot-link">Quên mật khẩu?</a>
+    <div style="text-align:center; margin-top: 10px;">
+        <a href="@Url.Action("QuenMatKhau","Home")"
+           style="font-size:14px; text-decoration:none; color:#007bff;">
+            Quên mật khẩu?
+        </a>
+    </div>
+
+    <div style="text-align:center; margin-top: 5px;">
+        <span style="font-size:14px;">Chưa có tài khoản? </span>
+        <a href="@Url.Action("DangKy","Home")"
+           style="font-weight:600; color:#007bff; text-decoration:none;">
+            Đăng ký
+        </a>
+    </div>
 </div>
 

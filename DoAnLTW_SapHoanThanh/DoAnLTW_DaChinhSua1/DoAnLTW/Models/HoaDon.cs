@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-
 namespace DoAnLTW.Models
 {
     [BsonIgnoreExtraElements]
@@ -29,7 +28,6 @@ namespace DoAnLTW.Models
         public KhachHang KhachHang { get; set; }
 
         // Lồng danh sách chi tiết vào đơn hàng
-        [BsonElement("ChiTiet")]
         public List<ChiTietHoaDon> ChiTietDonHang { get; set; }
     }
 }

@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "NhapMaXacNhan";
+    Layout = "~/Views/Shared/LayoutPhuKienDTh.cshtml";
+}
+
+<div class="login-container">
+    <div class="login-title">Nhập mã xác nhận</div>
+
+    @if (TempData["ThongBao"] != null)
+    {
+        <div class="alert alert-info">@TempData["ThongBao"]</div>
+    }
+
+    @if (ViewBag.ThongBao != null)
+    {
+        <div class="alert alert-danger">@ViewBag.ThongBao</div>
+    }
+
+    <form method="post" action="/Home/NhapMaXacNhan">
+        <div class="mb-3">
+            <label class="form-label">Mã xác nhận</label>
+            <input type="text" class="form-control" name="code" placeholder="Nhập mã 6 số" required />
+        </div>
+
+        <button class="btn btn-login" type="submit">Xác nhận</button>
+    </form>
+</div>
+

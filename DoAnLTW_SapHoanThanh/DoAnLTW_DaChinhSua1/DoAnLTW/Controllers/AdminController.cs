@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -34,7 +33,6 @@ namespace DoAnLTW.Controllers
             _khachHangCollection = _database.GetCollection<KhachHang>("KhachHang");
             _nhaCungCapCollection = _database.GetCollection<NhaCungCap>("NhaCungCap");
             _hoaDonCollection = _database.GetCollection<HoaDon>("HoaDon");
-
         }
 
         public ActionResult Index()
@@ -211,6 +209,7 @@ namespace DoAnLTW.Controllers
 
             // Thay đổi: Tìm hóa đơn
             HoaDon hoaDon = _hoaDonCollection.Find(h => h.MaHD == MaHD).FirstOrDefault();
+
             if (hoaDon == null)
             {
                 return HttpNotFound();
@@ -218,8 +217,6 @@ namespace DoAnLTW.Controllers
             var maSPList = hoaDon.ChiTietDonHang.Select(ct => ct.MaSP).ToList();
             var sanPhams = _sanPhamCollection.Find(sp => maSPList.Contains(sp.MaSP))
                                              .ToList().ToDictionary(sp => sp.MaSP);
-            KhachHang khachHang = _khachHangCollection.Find(k => k.MaKH == hoaDon.MaKH).FirstOrDefault();
-            hoaDon.KhachHang = khachHang;
             foreach (var ct in hoaDon.ChiTietDonHang)
             {
                 if (sanPhams.ContainsKey(ct.MaSP))
