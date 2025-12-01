@@ -5,6 +5,7 @@
     ViewBag.Title = "Cập nhật đơn hàng";
     // Lấy chi tiết sản phẩm từ ViewBag mà Controller đã gửi qua
     var chiTiet = ViewBag.ChiTiet as List<ChiTietHoaDon>;
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <h2>Cập nhật trạng thái đơn hàng: @Model.MaHD</h2>

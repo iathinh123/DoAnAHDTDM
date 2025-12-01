@@ -8,20 +8,18 @@ namespace DoAnLTW.Models
 {
     public class ChiTietHoaDon
     {
-        [BsonElement("MaSP")]
+        [BsonElement("maSP")]
         public string MaSP { get; set; }
 
-        [BsonElement("TenSP")]
+        [BsonElement("tenSP")]
         public string TenSP { get; set; }
 
-        [BsonElement("SoLuong")]
+        [BsonElement("soLuong")]
         public int SoLuong { get; set; }
 
-        [BsonElement("DonGia")]
+        [BsonElement("donGia")]
         [BsonRepresentation(BsonType.Decimal128)]
         public decimal DonGia { get; set; }
-        [BsonElement("HinhAnh")]
-        public string HinhAnh { get; set; }
 
         // --- THÊM DÒNG NÀY VÀO ---
         // Thuộc tính này dùng để chứa dữ liệu "join" của sản phẩm
