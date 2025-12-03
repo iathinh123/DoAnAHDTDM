@@ -30,6 +30,6 @@ namespace DoAnLTW.Models
 
         // Lồng danh sách chi tiết vào đơn hàng
         [BsonElement("ChiTiet")]
-        public List<ChiTietHoaDon> ChiTietDonHang { get; set; }
+        public List<ChiTietHoaDon> ChiTiet { get; set; }
     }
 }

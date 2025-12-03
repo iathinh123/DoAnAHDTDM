@@ -22,9 +22,6 @@ namespace DoAnLTW.Models
         public decimal DonGia { get; set; }
         [BsonElement("HinhAnh")]
         public string HinhAnh { get; set; }
-
-        // --- THÊM DÒNG NÀY VÀO ---
-        // Thuộc tính này dùng để chứa dữ liệu "join" của sản phẩm
         [BsonIgnore]
         public SanPham SanPham { get; set; }
     }
