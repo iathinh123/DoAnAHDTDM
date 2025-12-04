@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "QuenMatKhau";
+    Layout = "~/Views/Shared/LayoutPhuKienDTh.cshtml";
+}
+
+<style>
+    .login-container {
+        width: 400px;
+        margin: 50px auto;
+        padding: 25px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background: #fff;
+    }
+
+    .login-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .btn-login {
+        width: 100%;
+        background-color: #d32f2f;
+        color: #fff;
+    }
+
+        .btn-login:hover {
+            background-color: #b30000;
+        }
+</style>
+
+<div class="login-container">
+    <div class="login-title">Quên mật khẩu</div>
+
+    @if (ViewBag.ThongBao != null)
+    {
+        <div class="alert alert-danger">@ViewBag.ThongBao</div>
+    }
+
+    <form method="post" action="/Home/QuenMatKhau">
+        <div class="mb-3 text-start">
+            <label class="form-label">Tên đăng nhập</label>
+            <input type="text" class="form-control" name="txtName" placeholder="Nhập tên đăng nhập của bạn" required />
+        </div>
+
+        <button type="submit" class="btn btn-login">Gửi mã xác nhận</button>
+    </form>
+
+    <div class="text-center mt-3">
+        <a href="/Home/DangNhap">Quay lại đăng nhập</a>
+    </div>
+</div>
+

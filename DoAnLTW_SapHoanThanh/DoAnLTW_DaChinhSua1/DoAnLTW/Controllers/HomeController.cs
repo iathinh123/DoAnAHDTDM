@@ -98,6 +98,82 @@ namespace DoAnLTW.Controllers
 
             return View(dssp);
         }
+        public ActionResult QuenMatKhau()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult QuenMatKhau(string txtName)
+        {
+            // Tìm khách hàng theo Họ Tên (HoTen)
+            var kh = _khachHangCollection.Find(k => k.HoTen == txtName).FirstOrDefault();
+
+            if (kh == null)
+            {
+                ViewBag.Error = "Tên đăng nhập không tồn tại!";
+                return View();
+            }
+
+            Random rnd = new Random();
+            string code = rnd.Next(100000, 999999).ToString();
+
+            Session["ResetCode"] = code;
+            Session["ResetUser"] = txtName;
+            TempData["ThongBao"] = $"Mã xác nhận của bạn là: {code}";
+
+            return RedirectToAction("NhapMaXacNhan");
+        }
+
+        public ActionResult NhapMaXacNhan()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult NhapMaXacNhan(string code)
+        {
+            string savedCode = Session["ResetCode"]?.ToString();
+
+            if (savedCode == null || code != savedCode)
+            {
+                ViewBag.ThongBao = "Mã xác nhận không đúng!";
+                return View();
+            }
+
+            return RedirectToAction("DatLaiMatKhau");
+        }
+
+        public ActionResult DatLaiMatKhau()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DatLaiMatKhau(string newPass)
+        {
+            string name = Session["ResetUser"]?.ToString();
+
+            var kh = _khachHangCollection.Find(k => k.HoTen == name).FirstOrDefault();
+
+            if (kh != null)
+            {
+                // Cập nhật mật khẩu mới
+                kh.MatKhau = newPass;
+
+                // Cập nhật toàn bộ document trong MongoDB
+                _khachHangCollection.ReplaceOne(
+                    k => k.HoTen == name,
+                    kh
+                );
+            }
+
+            // Xóa session sau khi hoàn thành
+            Session["ResetUser"] = null;
+            Session["ResetCode"] = null;
+
+            return RedirectToAction("DangNhap");
+        }
 
         public ActionResult ChiTietSanPham(string maSP)
         {

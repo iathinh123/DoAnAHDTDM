@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-
 namespace DoAnLTW.Models
 {
     [BsonIgnoreExtraElements]

@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "DatLaiMatKhau";
+    Layout = "~/Views/Shared/LayoutPhuKienDTh.cshtml";
+}
+
+<div class="login-container">
+    <div class="login-title">Đặt lại mật khẩu</div>
+
+    <form method="post" action="/Home/DatLaiMatKhau">
+        <div class="mb-3">
+            <label class="form-label">Mật khẩu mới</label>
+            <input type="password" class="form-control" name="newPass" required placeholder="Nhập mật khẩu mới" />
+        </div>
+
+        <button class="btn btn-login" type="submit">Cập nhật</button>
+    </form>
+</div>
+
