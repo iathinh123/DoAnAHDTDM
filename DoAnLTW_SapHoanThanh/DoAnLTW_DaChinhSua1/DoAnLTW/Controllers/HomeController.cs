@@ -51,6 +51,7 @@ namespace DoAnLTW.Controllers
         }
         public ActionResult DangKy()
         {
+            int abc;
             return View();
         }
         [HttpPost]
