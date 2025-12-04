@@ -23,18 +23,13 @@ namespace DoAnLTW.Models
         {
             get { return SoLuong * DonGia; }
         }
-
-        // --- THAY ĐỔI QUAN TRỌNG ---
-        // Constructor cũ (public CartItem(string maSP)) đã bị xóa.
-        // Constructor mới này nhận một đối tượng SanPham
         public CartItem(SanPham sanPham)
         {
             this.MaSP = sanPham.MaSP;
             this.TenSP = sanPham.TenSP;
             this.HinhAnh = sanPham.HinhAnh;
-            // Giả sử thuộc tính 'Gia' trong SanPham của bạn là kiểu decimal
             this.DonGia = sanPham.Gia;
-            this.SoLuong = 1; // Mặc định là 1 khi thêm mới
+            this.SoLuong = 1;
         }
     }
 }

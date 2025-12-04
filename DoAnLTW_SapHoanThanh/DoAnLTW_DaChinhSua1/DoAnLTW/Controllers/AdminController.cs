@@ -97,8 +97,6 @@ namespace DoAnLTW.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            // Thay đổi: Dùng Find().FirstOrDefault()
-            // Lưu ý: Code của bạn đang dùng MaSP làm ID, không phải _id của Mongo
             SanPham sanPham = _sanPhamCollection.Find(s => s.MaSP.Trim() == id).FirstOrDefault();
 
             if (sanPham == null)
@@ -138,7 +136,6 @@ namespace DoAnLTW.Controllers
                 }
                 else
                 {
-                    // Thay đổi: Giữ lại ảnh cũ nếu không upload ảnh mới
                     sanPham.HinhAnh = sanPhamCu.HinhAnh;
                 }
 
@@ -147,7 +144,6 @@ namespace DoAnLTW.Controllers
 
                 return RedirectToAction("Index");
             }
-
             ViewBag.MaDM = new SelectList(_danhMucCollection.Find(_ => true).ToList(), "MaDM", "TenDM", sanPham.MaDM);
             ViewBag.MaNCC = new SelectList(_nhaCungCapCollection.Find(_ => true).ToList(), "MaNCC", "TenNCC", sanPham.MaNCC);
             return View("Sua", sanPham);
@@ -214,17 +210,19 @@ namespace DoAnLTW.Controllers
             {
                 return HttpNotFound();
             }
-            var maSPList = hoaDon.ChiTietDonHang.Select(ct => ct.MaSP).ToList();
+            var maSPList = hoaDon.ChiTiet.Select(ct => ct.MaSP).ToList();
             var sanPhams = _sanPhamCollection.Find(sp => maSPList.Contains(sp.MaSP))
                                              .ToList().ToDictionary(sp => sp.MaSP);
-            foreach (var ct in hoaDon.ChiTietDonHang)
+            KhachHang khachHang = _khachHangCollection.Find(k => k.MaKH == hoaDon.MaKH).FirstOrDefault();
+            hoaDon.KhachHang = khachHang;
+            foreach (var ct in hoaDon.ChiTiet)
             {
                 if (sanPhams.ContainsKey(ct.MaSP))
                 {
                     ct.SanPham = sanPhams[ct.MaSP];
                 }
             }
-            ViewBag.ChiTiet = hoaDon.ChiTietDonHang;
+            ViewBag.ChiTiet = hoaDon.ChiTiet;
 
             return View(hoaDon);
         }

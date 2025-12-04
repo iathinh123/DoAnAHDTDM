@@ -28,6 +28,7 @@ namespace DoAnLTW.Models
         public KhachHang KhachHang { get; set; }
 
         // Lồng danh sách chi tiết vào đơn hàng
-        public List<ChiTietHoaDon> ChiTietDonHang { get; set; }
+        [BsonElement("ChiTiet")]
+        public List<ChiTietHoaDon> ChiTiet { get; set; }
     }
 }

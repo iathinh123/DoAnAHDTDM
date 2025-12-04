@@ -20,9 +20,8 @@ namespace DoAnLTW.Models
         [BsonElement("donGia")]
         [BsonRepresentation(BsonType.Decimal128)]
         public decimal DonGia { get; set; }
-
-        // --- THÊM DÒNG NÀY VÀO ---
-        // Thuộc tính này dùng để chứa dữ liệu "join" của sản phẩm
+        [BsonElement("HinhAnh")]
+        public string HinhAnh { get; set; }
         [BsonIgnore]
         public SanPham SanPham { get; set; }
     }

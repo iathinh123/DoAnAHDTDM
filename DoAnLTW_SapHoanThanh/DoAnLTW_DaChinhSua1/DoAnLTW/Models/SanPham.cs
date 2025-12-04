@@ -22,7 +22,7 @@ namespace DoAnLTW.Models
         public string MoTa { get; set; }
 
         [BsonElement("hinhAnh")]
-        public string HinhAnh { get; set; } // Lưu tên file hoặc URL
+        public string HinhAnh { get; set; }
 
         [BsonElement("gia")]
         [BsonRepresentation(BsonType.Decimal128)]
@@ -32,20 +32,14 @@ namespace DoAnLTW.Models
         public int SoLuong { get; set; }
 
         [BsonElement("tinhTrang")]
-        public string TinhTrang { get; set; } // Ví dụ: "Còn hàng"
-
-        // --- Tham chiếu (Giống Foreign Key) ---
+        public string TinhTrang { get; set; }
         [BsonElement("maDM")]
         public string MaDM { get; set; }
 
         [BsonElement("maNCC")]
         public string MaNCC { get; set; }
-
-        // --- Thuộc tính để "join" ở tầng ứng dụng ---
-        // MongoDB.Driver sẽ bỏ qua các thuộc tính này khi đọc/ghi
         [BsonIgnore]
         public DanhMuc DanhMuc { get; set; }
-
         [BsonIgnore]
         public NhaCungCap NhaCungCap { get; set; }
     }

@@ -51,6 +51,7 @@ namespace DoAnLTW.Controllers
         }
         public ActionResult DangKy()
         {
+            int abc;
             return View();
         }
         [HttpPost]
@@ -311,14 +312,14 @@ namespace DoAnLTW.Controllers
             string soNgauNhien = new Random().Next(10000, 99999).ToString();
             ddh.MaHD = "HD" + soNgauNhien.Substring(soNgauNhien.Length - 3);
 
-            ddh.ChiTietDonHang = new List<ChiTietHoaDon>();
+            ddh.ChiTiet = new List<ChiTietHoaDon>();
             foreach (var item in lstGioHang)
             {
                 ChiTietHoaDon cthd = new ChiTietHoaDon();
                 cthd.MaSP = item.MaSP;
                 cthd.SoLuong = item.SoLuong;
                 cthd.DonGia = item.DonGia;
-                ddh.ChiTietDonHang.Add(cthd);
+                ddh.ChiTiet.Add(cthd);
             }
             _hoaDonCollection.InsertOne(ddh);
 
@@ -400,14 +401,14 @@ namespace DoAnLTW.Controllers
             hd.DiaChiGiaoHang = diaChiNhan;
             hd.SoDienThoaiGiaoHang = sdtNhan;
             hd.TongTien = gioHang.Sum(n => n.ThanhTien);
-            hd.ChiTietDonHang = new List<ChiTietHoaDon>();
+            hd.ChiTiet = new List<ChiTietHoaDon>();
             foreach (var item in gioHang)
             {
                 ChiTietHoaDon ct = new ChiTietHoaDon();
                 ct.MaSP = item.MaSP;
                 ct.SoLuong = item.SoLuong;
                 ct.DonGia = item.DonGia;
-                hd.ChiTietDonHang.Add(ct);
+                hd.ChiTiet.Add(ct);
             }
             _hoaDonCollection.InsertOne(hd);
 
